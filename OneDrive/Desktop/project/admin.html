@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+
+  <style>
+
+    body{
+      background:#071226;
+      color:white;
+      font-family:Arial;
+      padding:40px;
+    }
+
+    h1{
+      margin-bottom:30px;
+    }
+
+    .student-card{
+      background:#111c34;
+      padding:20px;
+      margin-top:20px;
+      border-radius:15px;
+    }
+
+  </style>
+
+</head>
+<body>
+
+<h1>Student Records</h1>
+<input type="time" id="startTime">
+
+<button onclick="saveTime()">
+Save Attendance Time
+</button>
+
+<div id="students"></div>
+
+<script>
+
+const students = JSON.parse(localStorage.getItem("students")) || [];
+
+const studentsDiv = document.getElementById("students");
+
+students.forEach(student => {
+
+   studentsDiv.innerHTML += `
+
+   <div class="student-card">
+
+      <h2>${student.name}</h2>
+
+      <p>Email: ${student.email}</p>
+
+      <p>Login Time: ${student.loginTime}</p>
+
+      <p>Status: ${student.status}</p>
+
+   </div>
+
+   `;
+
+});
+
+</script>
+<script>
+
+function saveTime(){
+
+   const time =
+   document.getElementById("startTime").value;
+
+   localStorage.setItem("attendanceTime",time);
+
+   alert("Attendance Time Saved");
+
+}
+
+</script>
+
+</body>
+</html>
